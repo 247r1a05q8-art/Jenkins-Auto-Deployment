@@ -5,6 +5,7 @@ pipeline {
         IMAGE_NAME = 'jenkins-auto-deployment'
         CONTAINER_NAME = 'jenkins-auto-deployment'
         APP_PORT = '5000'
+        PYTHON = 'C:\\Users\\shani\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
     }
 
     stages {
@@ -16,15 +17,15 @@ pipeline {
 
         stage('Install Dependencies') {
             steps {
-                bat 'python -m pip install --upgrade pip'
-                bat 'python -m pip install -r app/requirements.txt'
-                bat 'python -m pip install pytest'
+                bat '"%PYTHON%" -m pip install --upgrade pip'
+                bat '"%PYTHON%" -m pip install -r app/requirements.txt'
+                bat '"%PYTHON%" -m pip install pytest'
             }
         }
 
         stage('Run Tests') {
             steps {
-                bat 'python -m pytest tests -v'
+                bat '"%PYTHON%" -m pytest tests -v'
             }
         }
 
@@ -44,7 +45,7 @@ pipeline {
 
         stage('Health Check') {
             steps {
-                bat 'python -c "import urllib.request; r=urllib.request.urlopen(\'http://localhost:%APP_PORT%/health\', timeout=10); print(r.read().decode()); assert r.status == 200"'
+                bat '"%PYTHON%" -c "import urllib.request; r=urllib.request.urlopen(\'http://localhost:%APP_PORT%/health\', timeout=10); print(r.read().decode()); assert r.status == 200"'
             }
         }
     }
