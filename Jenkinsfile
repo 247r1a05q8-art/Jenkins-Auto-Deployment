@@ -5,10 +5,11 @@ pipeline {
         IMAGE_NAME = 'jenkins-auto-deployment'
         CONTAINER_NAME = 'jenkins-auto-deployment'
         APP_PORT = '5000'
-        PYTHON = 'C:\\Users\\shani\\AppData\\Local\\Programs\\Python\\Python37\\python.exe'
+        PYTHON = 'C:\\Users\\shani\\AppData\\Local\\Programs\\Python\\Python311\\python.exe'
     }
 
     stages {
+
         stage('Checkout') {
             steps {
                 checkout scm
@@ -51,12 +52,15 @@ pipeline {
     }
 
     post {
+
         success {
             echo 'Deployment completed successfully.'
         }
+
         failure {
             echo 'Pipeline failed. Check the Jenkins console output.'
         }
+
         always {
             echo 'CI/CD pipeline finished.'
         }
