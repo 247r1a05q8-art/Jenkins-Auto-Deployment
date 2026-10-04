@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jenkins Auto Deployment</title>
+    <style>
+        * { box-sizing: border-box; }
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #101828, #1d2939);
+            color: white;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .card {
+            width: min(720px, 92%);
+            padding: 42px;
+            border-radius: 24px;
+            background: rgba(255,255,255,.08);
+            border: 1px solid rgba(255,255,255,.15);
+            box-shadow: 0 20px 60px rgba(0,0,0,.35);
+        }
+        .badge {
+            display: inline-block;
+            padding: 8px 14px;
+            border-radius: 999px;
+            background: rgba(46,204,113,.18);
+            color: #7bed9f;
+            font-size: 14px;
+            font-weight: bold;
+        }
+        h1 { font-size: 42px; margin: 22px 0 12px; }
+        p { color: #cbd5e1; line-height: 1.7; }
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 16px;
+            margin-top: 30px;
+        }
+        .item {
+            padding: 20px;
+            border-radius: 16px;
+            background: rgba(255,255,255,.07);
+        }
+        .label { color: #94a3b8; font-size: 13px; }
+        .value { margin-top: 8px; font-size: 20px; font-weight: bold; }
+        .pipeline {
+            margin-top: 28px;
+            padding: 18px;
+            border-left: 4px solid #60a5fa;
+            background: rgba(96,165,250,.08);
+        }
+        @media(max-width:600px) {
+            h1 { font-size: 32px; }
+            .grid { grid-template-columns: 1fr; }
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <span class="badge">● DEPLOYMENT SUCCESSFUL</span>
+    <h1>Jenkins Auto Deployment</h1>
+    <p>
+        This application was deployed through an automated Git-to-Production
+        CI/CD pipeline using Jenkins and Docker.
+    </p>
+
+    <div class="grid">
+        <div class="item">
+            <div class="label">APPLICATION VERSION</div>
+            <div class="value">{{ version }}</div>
+        </div>
+        <div class="item">
+            <div class="label">ENVIRONMENT</div>
+            <div class="value">{{ environment }}</div>
+        </div>
+    </div>
+
+    <div class="pipeline">
+        <strong>Pipeline:</strong><br><br>
+        Git Push → Jenkins → Build → Test → Docker Build → Deploy
+    </div>
+</div>
+</body>
+</html>

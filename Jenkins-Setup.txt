@@ -1,0 +1,22 @@
+JENKINS SETUP CHECKLIST
+
+1. Install Git.
+2. Install Python.
+3. Install Docker Desktop.
+4. Install Jenkins.
+5. Add Git, Python and Docker to the Jenkins agent PATH.
+6. Verify from a Jenkins build:
+   git --version
+   python --version
+   docker --version
+7. Create a Pipeline job.
+8. Connect the GitHub repository.
+9. Select "Pipeline script from SCM".
+10. Script Path = Jenkinsfile.
+11. Save and Build Now.
+
+Expected URL:
+http://localhost:5000
+
+Health endpoint:
+http://localhost:5000/health
